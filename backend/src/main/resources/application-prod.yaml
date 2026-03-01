@@ -1,0 +1,29 @@
+### Application Production Profile
+### 모든 민감한 정보는 환경변수로 주입됨
+### 환경변수 설정 (운영 서버에서):
+###   DB_HOST, DB_PORT, DB_NAME, DB_USERNAME, DB_PASSWORD
+###   SPRING_PROFILE_ACTIVE=prod
+
+spring:
+  jpa:
+    database-platform: org.hibernate.dialect.MariaDBDialect
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+  devtools:
+    restart:
+      enabled: false
+
+logging:
+  level:
+    root: WARN
+    com.yellowpang.backend: INFO
+    org.springframework.security: WARN
+    org.mybatis: WARN
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} - %msg%n"
+    file: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n"
+  file:
+    name: /var/log/smartcity-backend/app.log
+    max-size: 100MB
+    max-history: 30
