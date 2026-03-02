@@ -4,9 +4,9 @@ spring:
   profiles:
     active: ${SPRING_PROFILE_ACTIVE:dev}
   datasource:
-    url: jdbc:mariadb://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME}?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: jdbc:mariadb://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:smartops}?characterEncoding=UTF-8&serverTimezone=Asia/Seoul
+    username: ${DB_USERNAME:smartops_user}
+    password: ${DB_PASSWORD:ChangeMe!1234}
     driver-class-name: org.mariadb.jdbc.Driver
   mybatis:
     mapper-locations: classpath*:mapper/**/*.xml
@@ -19,6 +19,10 @@ spring:
     locations: classpath:db/migration
     baseline-on-migrate: true
     baseline-version: 0
+
+jwt:
+  secret-key: ${JWT_SECRET_KEY:your-secret-key-change-in-production-with-min-256bits}
+  expiration-ms: ${JWT_EXPIRATION_MS:86400000}
 
 logging:
   level:
